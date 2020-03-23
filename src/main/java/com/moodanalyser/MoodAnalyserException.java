@@ -13,6 +13,7 @@ public class MoodAnalyserException extends Throwable {
     }
 
     public enum UserDefineDataType {
-        NULL_EXCEPTION
+        NULL_EXCEPTION,
+        EMPTY_EXCEPTION
     };
 }

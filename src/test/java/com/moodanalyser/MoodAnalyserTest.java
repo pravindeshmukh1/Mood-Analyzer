@@ -33,4 +33,14 @@ public class MoodAnalyserTest {
             Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NULL_EXCEPTION,e.userDefinedObject);
         }
     }
+
+    @Test
+    public void whenGivenEmpty_shouldReturnCustomException(){
+        try {
+            MoodAnalyser moodAnalyser=new MoodAnalyser("");
+            moodAnalyser.analyse();
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.EMPTY_EXCEPTION,e.userDefinedObject);
+        }
+    }
 }
