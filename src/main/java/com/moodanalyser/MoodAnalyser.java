@@ -11,13 +11,13 @@ public class MoodAnalyser {
         System.out.println("Welcome to the Mood Analyser");
     }
 
-    public String analyse() {
+    public String analyse() throws MoodAnalyserException {
         try {
             if (message.contains("Sad"))
                 return "SAD";
             return "HAPPY";
-        }catch (NullPointerException e){
-            return "HAPPY";
+        } catch (NullPointerException e) {
+            throw new MoodAnalyserException("Plz enter the mood can not null", MoodAnalyserException.UserDefineDataType.NULL_EXCEPTION);
         }
     }
 }
