@@ -27,8 +27,10 @@ public class MoodAnalyserFactory {
         try {
             Class<?> moodAnalyser = Class.forName(classname);
             return moodAnalyser.getConstructor(constructor);
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException e) {
             throw new MoodAnalyserException("Class not Found", MoodAnalyserException.UserDefineDataType.NO_SUCH_CLASS);
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyserException("Method not Food", MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);
         }
     }
 }

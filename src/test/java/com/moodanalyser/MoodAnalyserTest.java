@@ -56,11 +56,21 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenClassName_whenWrong_shouldReturnCustomException() throws MoodAnalyserException {
+    public void givenClassName_whenWrong_shouldReturnCustomException() {
         try {
             MoodAnalyserFactory.getConstructor("com.moodanalyser.MoodAnalyser1", String.class);
         } catch (MoodAnalyserException e) {
             Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_CLASS, e.userDefinedObject);
         }
     }
+
+    @Test
+    public void givenClassName_whenConstructorNotProper_shouldReturnCustomException() {
+        try {
+            MoodAnalyserFactory.getConstructor("com.moodanalyser.MoodAnalyser", Integer.class);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD, e.userDefinedObject);
+        }
+    }
+
 }
