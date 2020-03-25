@@ -3,10 +3,9 @@ package com.moodanalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 public class MoodAnalyserTest {
+
+    private Object e;
 
     @Test
     public void whenGivenSad_shouldReturnSad() throws MoodAnalyserException {
@@ -30,7 +29,7 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void whenGivenNull_shouldReturnCustomException() throws MoodAnalyserException {
+    public void whenGivenNull_shouldReturnCustomException() {
         try {
             MoodAnalyser moodAnalyser = new MoodAnalyser(null);
             moodAnalyser.analyse();
@@ -51,7 +50,17 @@ public class MoodAnalyserTest {
 
     //4
     @Test
-    public void givenMoodAnalyserClass_usingDefaultConstructor_whenProper_shouldReturnObject(){
-        MoodAnalyser moodAnalyserFactory=MoodAnalyserFactory.defaultMoodAnalyser();
+    public void givenMoodAnalyserClass_usingDefaultConstructor_whenProper_shouldReturnObject() {
+        MoodAnalyser moodAnalyzerFactory = MoodAnalyserFactory.defaultMoodAnalyser();
+        Assert.assertEquals(new MoodAnalyser(), moodAnalyzerFactory);
+    }
+
+    @Test
+    public void givenClassName_whenWrong_shouldReturnCustomException() throws MoodAnalyserException {
+        try {
+            MoodAnalyserFactory.getConstructor("com.moodanalyser.MoodAnalyser1", String.class);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_CLASS, e.userDefinedObject);
         }
+    }
 }

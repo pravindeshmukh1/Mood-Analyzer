@@ -1,6 +1,6 @@
 package com.moodanalyser;
 
-import javax.jws.soap.SOAPBinding;
+
 
 public class MoodAnalyserException extends Throwable {
 
@@ -14,6 +14,7 @@ public class MoodAnalyserException extends Throwable {
 
     public enum UserDefineDataType {
         NULL_EXCEPTION,
-        EMPTY_EXCEPTION
+        EMPTY_EXCEPTION,
+        NO_SUCH_CLASS
     };
 }
