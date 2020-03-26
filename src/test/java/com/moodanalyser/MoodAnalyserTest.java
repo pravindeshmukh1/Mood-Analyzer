@@ -113,6 +113,7 @@ public class MoodAnalyserTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void givenSetField_whenImproper_shouldReturnException() {
         try {
@@ -120,6 +121,16 @@ public class MoodAnalyserTest {
             String mood = (String) MoodAnalyserFactory.setFieldValue(moodAnalyser, "Happy Mood", "message!");
         } catch (MoodAnalyserException e) {
             Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_FIELD, e.userDefinedObject);
+        }
+    }
+
+    @Test
+    public void givenSetFieldWithNullMessage_whenNull_shouldReturnException() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.defaultMoodAnalyser();
+        try {
+            String mood = (String) MoodAnalyserFactory.setFieldValue(moodAnalyser, null, "message");
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.FIELD_INVOCATION_ISSUE, e.userDefinedObject);
         }
     }
 }
