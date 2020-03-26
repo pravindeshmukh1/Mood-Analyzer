@@ -73,4 +73,12 @@ public class MoodAnalyserTest {
         }
     }
 
+    //5
+    @Test
+    public void givenMoodAnalyser_withParameterConstructor_shouldReturnObject(){
+        MoodAnalyser moodAnalyserFactory=MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
+        Assert.assertEquals(new MoodAnalyser("Happy Mood"),moodAnalyserFactory);
+    }
+
+
 }

@@ -33,4 +33,22 @@ public class MoodAnalyserFactory {
             throw new MoodAnalyserException("Method not Food", MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);
         }
     }
+
+    public static MoodAnalyser parameterizedMoodAnalyser(String message) {
+        try {
+            Constructor<?> constructor=Class.forName("com.moodanalyser.MoodAnalyser").getConstructor(String.class);
+            return (MoodAnalyser) constructor.newInstance(message);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
