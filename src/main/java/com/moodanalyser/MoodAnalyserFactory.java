@@ -36,7 +36,7 @@ public class MoodAnalyserFactory {
 
     public static MoodAnalyser parameterizedMoodAnalyser(String message) {
         try {
-            Constructor<?> constructor=Class.forName("com.moodanalyser.MoodAnalyser").getConstructor(String.class);
+            Constructor<?> constructor = Class.forName("com.moodanalyser.MoodAnalyser").getConstructor(String.class);
             return (MoodAnalyser) constructor.newInstance(message);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -51,4 +51,18 @@ public class MoodAnalyserFactory {
         }
         return null;
     }
+
+    public static String invokedMethod(MoodAnalyser moodAnalyser, String methodName) throws MoodAnalyserException {
+        try {
+            return (String) moodAnalyser.getClass().getMethod(methodName).invoke(moodAnalyser);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyserException(e.getMessage(), MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);
+        }
+        return null;
+    }
 }
+

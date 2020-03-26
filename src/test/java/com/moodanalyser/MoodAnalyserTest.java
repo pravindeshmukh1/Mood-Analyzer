@@ -74,8 +74,19 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenMoodAnalyser_withParameterConstructor_shouldReturnObject(){
-        MoodAnalyser moodAnalyserFactory=MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
-        Assert.assertEquals(new MoodAnalyser("Happy Mood"),moodAnalyserFactory);
+    public void givenMoodAnalyser_withParameterConstructor_shouldReturnObject() {
+        MoodAnalyser moodAnalyserFactory = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
+        Assert.assertEquals(new MoodAnalyser("Happy Mood"), moodAnalyserFactory);
+    }
+
+    @Test
+    public void givenHappyMessage_usingMethodInvoked_whenProper_shouldReturnHappyMood() throws MoodAnalyserException {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
+            String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "analyseMethod");
+            Assert.assertEquals("Happy", mood);
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 }

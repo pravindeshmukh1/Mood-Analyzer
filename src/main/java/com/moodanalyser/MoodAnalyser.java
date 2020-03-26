@@ -12,7 +12,7 @@ public class MoodAnalyser {
     }
 
     public MoodAnalyser() {
-        message="Default Constructor";
+        message = "Default Constructor";
     }
 
     public static void main(String[] args) {
