@@ -81,12 +81,23 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenHappyMessage_usingMethodInvoked_whenProper_shouldReturnHappyMood() throws MoodAnalyserException {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
             String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "analyseMethod");
             Assert.assertEquals("Happy", mood);
         } catch (MoodAnalyserException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenHappyMessage_usingMethodInvoked_whenImProper_shouldReturnHappyMood() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
+        try {
+            String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "AnalyseMethod");
+            Assert.assertEquals("Happy", mood);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD,e.userDefinedObject);
         }
     }
 }
