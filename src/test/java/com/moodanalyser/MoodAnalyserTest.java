@@ -3,9 +3,9 @@ package com.moodanalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MoodAnalyserTest {
+import java.lang.reflect.Constructor;
 
-    private Object e;
+public class MoodAnalyserTest {
 
     @Test
     public void whenGivenSad_shouldReturnSad() throws MoodAnalyserException {
@@ -73,12 +73,9 @@ public class MoodAnalyserTest {
         }
     }
 
-    //5
     @Test
     public void givenMoodAnalyser_withParameterConstructor_shouldReturnObject(){
         MoodAnalyser moodAnalyserFactory=MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         Assert.assertEquals(new MoodAnalyser("Happy Mood"),moodAnalyserFactory);
     }
-
-
 }
