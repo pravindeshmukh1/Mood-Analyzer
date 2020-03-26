@@ -113,4 +113,13 @@ public class MoodAnalyserTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void givenSetField_whenImproper_shouldReturnException() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.defaultMoodAnalyser();
+            String mood = (String) MoodAnalyserFactory.setFieldValue(moodAnalyser, "Happy Mood", "message!");
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_FIELD, e.userDefinedObject);
+        }
+    }
 }

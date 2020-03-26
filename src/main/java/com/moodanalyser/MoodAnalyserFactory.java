@@ -72,7 +72,9 @@ public class MoodAnalyserFactory {
             field.setAccessible(true);
             field.set(moodAnalyser, message);
             return moodAnalyser.getClass().getDeclaredMethod("analyse").invoke(moodAnalyser);
-        } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (NoSuchFieldException | IllegalAccessException | InvocationTargetException e) {
+            throw new MoodAnalyserException(e.getMessage(), MoodAnalyserException.UserDefineDataType.NO_SUCH_FIELD);
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
             return null;
         }
