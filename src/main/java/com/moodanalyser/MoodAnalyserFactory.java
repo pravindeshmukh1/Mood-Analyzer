@@ -1,8 +1,7 @@
 package com.moodanalyser;
 
-import javax.xml.bind.annotation.XmlAnyAttribute;
-import java.lang.annotation.Target;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
@@ -62,9 +61,21 @@ public class MoodAnalyserFactory {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            throw new MoodAnalyserException("Method Not Found",MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);
+            throw new MoodAnalyserException("Method Not Found", MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);
         }
         return null;
+    }
+
+    public static Object setFieldValue(Object moodAnalyser, String message, String fieldName) throws MoodAnalyserException {
+        try {
+            Field field = moodAnalyser.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(moodAnalyser, message);
+            return moodAnalyser.getClass().getDeclaredMethod("analyse").invoke(moodAnalyser);
+        } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

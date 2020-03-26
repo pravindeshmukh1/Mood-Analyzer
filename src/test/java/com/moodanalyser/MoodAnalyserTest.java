@@ -3,6 +3,8 @@ package com.moodanalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class MoodAnalyserTest {
 
     @Test
@@ -82,8 +84,8 @@ public class MoodAnalyserTest {
     public void givenHappyMessage_usingMethodInvoked_whenProper_shouldReturnHappyMood() {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         try {
-            String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "analyseMethod");
-            Assert.assertEquals("Happy", mood);
+            String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "analyse");
+            Assert.assertEquals("HAPPY", mood);
         } catch (MoodAnalyserException e) {
             e.printStackTrace();
         }
@@ -94,9 +96,21 @@ public class MoodAnalyserTest {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         try {
             String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "AnalyseMethod");
-            Assert.assertEquals("Happy", mood);
+            Assert.assertEquals("HAPPY", mood);
         } catch (MoodAnalyserException e) {
             Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD, e.userDefinedObject);
+        }
+    }
+
+    //7
+    @Test
+    public void givenSetFieldNameAndValue_whenProper_shouldReturnValue() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.defaultMoodAnalyser();
+        try {
+            String mood = (String) MoodAnalyserFactory.setFieldValue(moodAnalyser, "Happy Mood", "message");
+            Assert.assertEquals("HAPPY", mood);
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
         }
     }
 }
