@@ -3,8 +3,6 @@ package com.moodanalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
-
 public class MoodAnalyserTest {
 
     @Test
@@ -79,8 +77,9 @@ public class MoodAnalyserTest {
         Assert.assertEquals(new MoodAnalyser("Happy Mood"), moodAnalyserFactory);
     }
 
+    //6
     @Test
-    public void givenHappyMessage_usingMethodInvoked_whenProper_shouldReturnHappyMood() throws MoodAnalyserException {
+    public void givenHappyMessage_usingMethodInvoked_whenProper_shouldReturnHappyMood() {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         try {
             String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "analyseMethod");
@@ -91,13 +90,13 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenHappyMessage_usingMethodInvoked_whenImProper_shouldReturnHappyMood() {
+    public void givenHappyMessage_usingMethodInvoked_whenImProper_shouldReturnException() {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.parameterizedMoodAnalyser("Happy Mood");
         try {
             String mood = MoodAnalyserFactory.invokedMethod(moodAnalyser, "AnalyseMethod");
             Assert.assertEquals("Happy", mood);
         } catch (MoodAnalyserException e) {
-            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD,e.userDefinedObject);
+            Assert.assertEquals(MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD, e.userDefinedObject);
         }
     }
 }
