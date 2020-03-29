@@ -10,15 +10,7 @@ public class MoodAnalyserFactory {
             Constructor constructor = Class.forName("com.moodanalyser.MoodAnalyser").getConstructor();
             MoodAnalyser moodAnalyser = (MoodAnalyser) constructor.newInstance();
             return moodAnalyser;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;
@@ -39,15 +31,7 @@ public class MoodAnalyserFactory {
         try {
             Constructor<?> constructor = Class.forName("com.moodanalyser.MoodAnalyser").getConstructor(String.class);
             return (MoodAnalyser) constructor.newInstance(message);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;
@@ -56,9 +40,7 @@ public class MoodAnalyserFactory {
     public static String invokedMethod(MoodAnalyser moodAnalyser, String methodName) throws MoodAnalyserException {
         try {
             return (String) moodAnalyser.getClass().getMethod(methodName).invoke(moodAnalyser);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             throw new MoodAnalyserException("Method Not Found", MoodAnalyserException.UserDefineDataType.NO_SUCH_METHOD);

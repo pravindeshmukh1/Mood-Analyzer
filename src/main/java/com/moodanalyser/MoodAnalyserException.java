@@ -1,9 +1,6 @@
 package com.moodanalyser;
 
-
 public class MoodAnalyserException extends Throwable {
-
-
     public UserDefineDataType userDefinedObject;
 
     public MoodAnalyserException(String message, UserDefineDataType userDefinedObject) {
@@ -18,7 +15,5 @@ public class MoodAnalyserException extends Throwable {
         NO_SUCH_METHOD,
         NO_SUCH_FIELD,
         FIELD_INVOCATION_ISSUE;
-    }
-
-    ;
+    };
 }

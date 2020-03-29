@@ -1,11 +1,9 @@
 package com.moodanalyser;
 
-
 import java.util.Objects;
 
 public class MoodAnalyser {
     private final String message;
-
 
     public MoodAnalyser(String message) {
         this.message = message;
@@ -45,6 +43,5 @@ public class MoodAnalyser {
     public int hashCode() {
         return Objects.hash(message);
     }
-
 }
 

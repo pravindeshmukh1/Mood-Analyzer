@@ -3,10 +3,7 @@ package com.moodanalyser;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class MoodAnalyserTest {
-
     @Test
     public void whenGivenSad_shouldReturnSad() throws MoodAnalyserException {
         MoodAnalyser moodanalyser = new MoodAnalyser("I Sad Mood");
